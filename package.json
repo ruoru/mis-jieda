@@ -13,8 +13,16 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "staticAssets": "rm -rf dist && cp -r public dist"
   },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ruoru/mis-jieda.git"
+  },
   "author": "",
   "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ruoru/mis-jieda/issues"
+  },
+  "homepage": "https://github.com/ruoru/mis-jieda#readme",
   "dependencies": {
     "react": "^15.6.1",
     "react-dom": "^15.6.1",
