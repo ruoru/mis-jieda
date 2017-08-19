@@ -33,7 +33,7 @@ npm install react react-dom redux react-redux --save
 安装打包工具 [webpack](https://ninghao.net/course/3443) 。[babel](https://ninghao.net/course/3432) 它可以转换我们写的 JavaScript，这样即使浏览器不支持，我们现在也可以使用 JavaScript 的一些新特性，因为 Babel 会为我们转换 JavaScript 代码，让浏览器能懂。
 
 ```
-npm install babel-core babel-loader babel-preset-latest html-webpack-plugin webpack webpack-dev-server webpack-merge --save-dev
+npm install babel-core babel-loader babel-preset-env babel-preset-latest babel-preset-react html-webpack-plugin webpack webpack-dev-server webpack-merge --save-dev
 ```
 
 ### 创建项目结构

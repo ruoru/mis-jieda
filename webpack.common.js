@@ -5,8 +5,8 @@ module.exports = {
         app: './src/index.jsx',
     },
     output: {
-        path: path.join(__dirname, 'dist'),    //resolve
-        filename: 'js/[name]-[hash:6].js',
+        path: path.join(__dirname, './dist'),    //resolve
+        filename: './js/[name]-[hash:6].js',
     },
     module: {
         loaders: [
@@ -17,7 +17,7 @@ module.exports = {
                 exclude: [/node_modules/],  //不通过该babel处理，提高打包速度。
                 include: [/src/],           //指定打包范围
                 query: {
-                    presets: ['env', 'react'],    //指定最后一个版本
+                    presets: ['react', 'env'],    //指定最后一个版本
                 },
             },
             //处理css文件
@@ -62,7 +62,7 @@ module.exports = {
     ],
     devServer: {
         open: true,
-        contentBase: path.join(__dirname, 'dist'),
+        contentBase: path.join(__dirname, './dist'),
         compress: true,    //启用所有服务的gzip压缩
         host: 'localhost',
         port: 8001,
