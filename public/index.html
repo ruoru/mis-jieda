@@ -13,7 +13,9 @@
   -->
   <!-- <link rel="manifest" href="%PUBLIC_URL%/manifest.json"> -->
   <!-- <link rel="shortcut icon" href="<%= htmlWebpackPlugin.options.publicURL %>/favicon.ico"> -->
-  <title></title>
+
+  <script type="text/javascript" async defer src="<%= htmlWebpackPlugin.files.chunks.app.entry %>"></script>
+  <title><%= htmlWebpackPlugin.options.title %></title>
 </head>
 <body>
   <div id="root"></div>

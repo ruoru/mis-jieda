@@ -33,7 +33,7 @@ npm install react react-dom redux react-redux --save
 安装打包工具 [webpack](https://ninghao.net/course/3443) 。[babel](https://ninghao.net/course/3432) 它可以转换我们写的 JavaScript，这样即使浏览器不支持，我们现在也可以使用 JavaScript 的一些新特性，因为 Babel 会为我们转换 JavaScript 代码，让浏览器能懂。
 
 ```
-npm install babel-core babel-loader babel-preset-latest html-webpack-plugin webpack webpack-dev-server webpack-merge --save-dev
+npm install babel-core babel-loader babel-preset-env babel-preset-latest babel-preset-react html-webpack-plugin webpack webpack-dev-server webpack-merge --save-dev
 ```
 
 ### 创建项目结构
@@ -204,3 +204,58 @@ browser-sync start --server
 ```
 
 会返回提示，告诉你服务器的地址，在浏览器上打开这个地址，你会在页面上看到一个用 p 标签包装的  “ hello ~ ” 。
+
+## 项目结构
+```
+├── src                      # 程序源文件
+│   ├── main.js              # 程序启动和渲染
+│   ├── components           # 全局可复用的表现组件(Presentational Components)
+│   ├── containers           # 全局可复用的容器组件
+│   ├── layouts              # 主页结构
+│   ├── store                # Redux指定块
+│   │   ├── createStore.js   # 创建和使用redux store
+│   │   └── reducers.js      # Reducer注册和注入
+│   └── routes               # 主路由和异步分割点
+│       ├── index.js         # 用store启动主程序路由
+│       ├── Root.js          # 为上下文providers包住组件
+│       └── Home             # 不规则路由
+│           ├── index.js     # 路由定义和代码异步分割
+│           ├── assets       # 组件引入的静态资源
+│           ├── components   # 直观React组件
+│           ├── container    # 连接actions和store
+│           ├── modules      # reducers/constants/actions的集合
+│           └── routes **    # 不规则子路由(** 可选择的)
+```
+
+react-starter-kit
+```
+.
+├── bin                      # 启动脚本
+├── blueprints               # redux-cli的蓝图
+├── build                    # 所有打包配置项
+│   └── webpack              # webpack的指定环境配置文件
+├── config                   # 项目配置文件
+├── server                   # Express 程序 (使用 webpack 中间件)
+│   └── main.js              # 服务端程序入口文件
+├── src                      # 程序源文件
+│   ├── main.js              # 程序启动和渲染
+│   ├── components           # 全局可复用的表现组件(Presentational Components)
+│   ├── containers           # 全局可复用的容器组件
+│   ├── layouts              # 主页结构
+│   ├── static               # 静态文件(不要到处imported源文件)
+│   ├── styles               # 程序样式
+│   ├── store                # Redux指定块
+│   │   ├── createStore.js   # 创建和使用redux store
+│   │   └── reducers.js      # Reducer注册和注入
+│   └── routes               # 主路由和异步分割点
+│       ├── index.js         # 用store启动主程序路由
+│       ├── Root.js          # 为上下文providers包住组件
+│       └── Home             # 不规则路由
+│           ├── index.js     # 路由定义和代码异步分割
+│           ├── assets       # 组件引入的静态资源
+│           ├── components   # 直观React组件
+│           ├── container    # 连接actions和store
+│           ├── modules      # reducers/constants/actions的集合
+│           └── routes **    # 不规则子路由(** 可选择的)
+└── tests                    # 单元测试
+```
