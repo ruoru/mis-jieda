@@ -11,6 +11,9 @@ module.exports = {
         path: join(__dirname, './dist'),
         filename: './js/[name]-[hash:6].js',
     },
+    resolve: {
+        extensions: ['.js', '.jsx', '.json'],
+    },
     module: {
         loaders: [
             //处理jsx文件
