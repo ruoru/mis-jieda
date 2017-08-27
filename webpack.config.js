@@ -2,6 +2,7 @@ const { join } = require('path');
 const webpack = require('webpack')
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const environment = require('./config/environment')[process.env.env];
+const version = require('./package').version;
 
 module.exports = {
     entry: {
@@ -9,7 +10,7 @@ module.exports = {
     },
     output: {
         path: join(__dirname, './dist'),
-        filename: './js/[name]-[hash:6].js',
+        filename: `./js/[name]-${version}.js`,
     },
     resolve: {
         extensions: ['.js', '.jsx', '.json'],
