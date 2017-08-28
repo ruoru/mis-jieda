@@ -47,7 +47,7 @@ touch src/app.jsx
 
 为应用的公开资源创建一个目录，用户真正访问的就是这个目录下面的东西。
 
-```
+```sh
 mkdir public
 touch public/index.html
 ```
@@ -56,32 +56,40 @@ touch public/index.html
 
 为 webpack 创建一个配置文件，放在应用的根目录下面：
 
-```
+```sh
 touch webpack.config.js
 ```
 
 配置如下：
 
-```
-const path = require('path');
-const htmlWebpackPlugin = require('html-webpack-plugin');
+```js
+const { join } = require('path');
+const webpack = require('webpack')
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const environment = require('./config/environment')[process.env.env];
+const version = require('./package').version;
 
 module.exports = {
-    entry: './src/app.jsx',
+    entry: {
+        app: './src/index.jsx',
+    },
     output: {
-        path: path.resolve(__dirname, "dist"),
-        filename: 'js/[name].bundle.[hash:6].js',
+        path: join(__dirname, './dist'),
+        filename: `./js/[name]-${version}.js`,
+    },
+    resolve: {
+        extensions: ['.js', '.jsx', '.json'],    //使用import 不需要写后缀
     },
     module: {
         loaders: [
-            //处理js文件
+            //处理jsx文件
             {
                 test: /\.jsx$/,
                 loader: 'babel-loader',
                 exclude: [/node_modules/],  //不通过该babel处理，提高打包速度。
                 include: [/src/],           //指定打包范围
                 query: {
-                    presets: ['latest'],
+                    presets: ['react', 'env'],    //指定最后一个版本
                 },
             },
             //处理css文件
@@ -123,20 +131,42 @@ module.exports = {
         ],
     },
     plugins: [
-        new htmlWebpackPlugin({
-            template: 'public/index.html',
+        new HtmlWebpackPlugin({
+            template: './public/index.html',
             filename: 'index.html',
-            inject: 'body',
+            inject: false,    // 打包之后js放置在那里 body header false不引入打包后的js
+            chunks: ['app'],
+            title: `${environment.title}`,
+            publicURL: '//assert.jieda.ltd',
         }),
+
+        new webpack.DefinePlugin({
+            'process.env': {
+                'NODE_ENV': `'${environment.name}'`,
+            }
+        }),
+
+        new webpack.optimize.UglifyJsPlugin({
+            beautify: false,
+            mangle: {
+                screw_ie8: true,
+                keep_fnames: true,
+            },
+            compress: {
+                screw_ie8: true,
+            },
+            comments: false,
+        })
     ],
     devServer: {
-        contentBase: path.join(__dirname, "dist"),
+        open: true,
+        contentBase: join(__dirname, './dist'),
         compress: true,    //启用所有服务的gzip压缩
-        host: '0.0.0.0',
-        port: 8001,
-        
+        host: 'localhost',
+        port: 8011,
+
         //lazy: true,    //当lazy启用时，当它被请求的DEV-服务器将只编译软件包。这意味着webpack不会看到任何文件更改。我们称这个懒惰模式。
-        //filename: "[name].bundle.js",    ///[name].bundle.js请求时才编译 。filename在没有延迟模式的情况下使用时不起作用。
+        //filename: '[name].bundle.js',    ///[name].bundle.js请求时才编译 。filename在没有延迟模式的情况下使用时不起作用。
     },
 };
 ```
@@ -205,7 +235,8 @@ browser-sync start --server
 
 会返回提示，告诉你服务器的地址，在浏览器上打开这个地址，你会在页面上看到一个用 p 标签包装的  “ hello ~ ” 。
 
-## 项目结构
+## redux项目结构
+[react 项目结构](https://juejin.im/post/58cbfcb05c497d0057b9b228)
 ```
 ├── src                      # 程序源文件
 │   ├── main.js              # 程序启动和渲染
@@ -227,7 +258,7 @@ browser-sync start --server
 │           └── routes **    # 不规则子路由(** 可选择的)
 ```
 
-react-starter-kit
+[react-starter-kit](https://github.com/bodyno/react-starter-kit.git)
 ```
 .
 ├── bin                      # 启动脚本
