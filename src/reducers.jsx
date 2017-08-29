@@ -1,4 +1,4 @@
-import { combineReducers } from 'redux'
+import { combineReducers } from 'redux';
 import { ADD_TODO, COMPLETE_TODO, SET_VISIBILITY_FILTER, VisibilityFilters } from './actions'
 const { SHOW_ALL } = VisibilityFilters
 
@@ -39,4 +39,4 @@ const todoApp = combineReducers({
   todos
 })
 
-export default todoApp
+export default todoApp;

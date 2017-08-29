@@ -1,8 +1,14 @@
 module.exports = {
   dev: {
-    name: 'dev',
+    name: 'development',
     NODE_ENV: 'dev',
     title: 'dev',
+    mixpanelToken: '',
+  },
+  test: {
+    name: 'testing',
+    NODE_ENV: 'test',
+    title: 'test',
     mixpanelToken: '',
   },
   staging: {
@@ -12,7 +18,7 @@ module.exports = {
     mixpanelToken: '',
   },
   prod: {
-    name: 'prod',
+    name: 'production',
     NODE_ENV: 'prod',
     title: '洁达纸业有限公司',
     mixpanelToken: '',

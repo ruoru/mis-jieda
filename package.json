@@ -5,12 +5,12 @@
   "main": "index.js",
   "scripts": {
     "start": "npm run build:dev && npm run dev",
-    "build:dev": "npm run staticAssets && env=dev webpack --progress --profile --colors",
+    "build:dev": "npm run copyStatic && env=dev webpack --progress --profile --colors",
     "dev": "env=dev webpack-dev-server -p --inline --hot",
-    "build:prod": "npm run staticAssets && env=prod webpack --progress --profile --colors",
+    "build:prod": "npm run copyStatic && env=prod webpack --progress --profile --colors",
     "prod": "env=prod webpack-dev-server -p --inline --hot",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "staticAssets": "rm -rf dist && cp -r public dist"
+    "copyStatic": "rm -rf dist && cp -r public dist"
   },
   "repository": {
     "type": "git",
