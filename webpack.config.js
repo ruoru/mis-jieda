@@ -6,7 +6,7 @@ const version = require('./package').version;
 
 module.exports = {
     entry: {
-        app: './src/index.jsx',
+        app: './src/main.jsx',
     },
     output: {
         path: join(__dirname, './dist'),
