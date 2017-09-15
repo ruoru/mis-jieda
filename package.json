@@ -1,6 +1,8 @@
 {
   "name": "mis-jieda",
   "version": "1.0.0",
+  "author": "",
+  "license": "ISC",
   "description": "luoyang jieda paper co., ltd management information service website.",
   "main": "index.js",
   "scripts": {
@@ -10,14 +12,13 @@
     "build:prod": "npm run copyStatic && env=prod webpack --progress --profile --colors",
     "prod": "env=prod webpack-dev-server -p --inline --hot",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "copyStatic": "rm -rf dist && cp -r public dist"
+    "copyStatic": "rm -rf dist && cp -r public dist",
+    "lint": "standard"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/ruoru/mis-jieda.git"
   },
-  "author": "",
-  "license": "ISC",
   "bugs": {
     "url": "https://github.com/ruoru/mis-jieda/issues"
   },
