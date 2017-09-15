@@ -10,10 +10,14 @@ module.exports = {
     },
     output: {
         path: join(__dirname, './dist'),
-        filename: `./js/[name]-${version}.js`,
+        filename: `./js/[name]-v${version}.js`,
     },
     resolve: {
         extensions: ['.js', '.jsx', '.json'],
+    },
+    externals: {
+        'react': 'React',
+        'react-dom': 'ReactDOM',
     },
     module: {
         loaders: [
