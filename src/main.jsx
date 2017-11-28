@@ -5,6 +5,8 @@ import { Provider } from 'react-redux';
 import App from './containers/App';
 import todoApp from './reducers';
 
+let fuck = 'all girls';
+
 render(
   <Provider store={createStore(todoApp)}>
     <App />
